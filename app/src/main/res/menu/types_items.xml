@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/orders"
+        android:icon="@drawable/ic_baseline_food_bank_24"
+        android:background="@color/white2"
+        android:title="All"
+        android:enabled="true"/>
+    <item
+        android:id="@+id/income"
+        android:icon="@drawable/ic_baseline_bookmark_24"
+        android:background="@color/white2"
+        android:title="Bookmarks"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_perm_identity_24"
+        android:background="@color/white2"
+        android:title="profile"
+        android:enabled="true"/>
+
+
+</menu>

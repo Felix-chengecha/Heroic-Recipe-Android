@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Heroic Recipe</string>
+
+    <string name="network_error">Cannot connect to Internet…Please check your connection!</string>
+    <string name="server_error">The server could not be found. Please try again after some time!!</string>
+    <string name="auth_error">Authentication Failed, Please try again!</string>
+    <string name="parse_error">Parsing error! Please try again after some time!!</string>
+    <string name="timeout_error">Connection TimeOut! Please check your internet connection.</string>
+
+
+</resources>
