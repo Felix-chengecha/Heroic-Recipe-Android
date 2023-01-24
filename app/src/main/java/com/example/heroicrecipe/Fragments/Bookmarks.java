@@ -49,6 +49,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Bookmarks extends Fragment {
 
@@ -84,15 +85,16 @@ public class Bookmarks extends Fragment {
     private void fetchbookmarks(String user_id) {
         foodmodels.clear();
         RecySwipe.setRefreshing(true);
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, Base_url.getbookmarks(user_id), null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+       StringRequest stringRequest=new StringRequest(Request.Method.POST, Base_url.getbookmarks(), new Response.Listener<String>() {
+           @Override
+           public void onResponse(String response) {
                         try {
-                    JSONArray jsonArray = response.getJSONArray("data");
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject=new JSONObject(response);
+                            JSONArray jsonArray = jsonObject.getJSONArray("data");
+                            RecySwipe.setRefreshing(false);
+                            for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-                            String foodid = object.getString("foodid");
+                            String foodid = object.getString("meals_id");
                             String foodname = object.getString("name");
                             String foodcateg = object.getString("category");
                             String imageurl = object.getString("image");
@@ -135,12 +137,21 @@ public class Bookmarks extends Fragment {
                 }
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+
+           @Nullable
+           @Override
+           protected Map<String, String> getParams() throws AuthFailureError {
+               HashMap<String, String>map=new HashMap<>();
+               map.put("user_id",user_id);
+               return map;
+           }
+       };
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        jsonObjectRequest.setRetryPolicy(
+        stringRequest.setRetryPolicy(
                 new DefaultRetryPolicy(0,-1,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
+        queue.add(stringRequest);
     }
 
     private void replacefrag(@NonNull Fragment fragment, String fid) {

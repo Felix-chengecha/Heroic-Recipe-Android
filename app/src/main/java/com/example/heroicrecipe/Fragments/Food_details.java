@@ -56,6 +56,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Food_details  extends Fragment {
     TextView fname;
@@ -145,19 +146,20 @@ public class Food_details  extends Fragment {
         progressDialog.setMessage("wait");
         progressDialog.show();
 
-        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, Base_url.addbookmarks(), null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+       StringRequest stringRequest=new StringRequest(Request.Method.POST, Base_url.addbookmarks(), new Response.Listener<String>() {
+           @Override
+           public void onResponse(String response) {
                         try {
-                    String success = response.getString("success");
-                    if (success.equalsIgnoreCase("1")) {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String res=jsonObject.getString("MSG");
+
+                    if (res.equalsIgnoreCase("bookmarks saved successfully")) {
                         progressDialog.dismiss();
                         Toast.makeText(getContext(), "food added to bookmarks ", Toast.LENGTH_SHORT).show();
                     }
-                    else if (success.equalsIgnoreCase("0")) {
+                    else if (res.equalsIgnoreCase("you have already saved this bookmark")) {
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(), "you have already added this food to bookmarks ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "you have already added this food to your bookmarks ", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -192,29 +194,28 @@ public class Food_details  extends Fragment {
             @Override
             protected HashMap<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("food_id", food_id);
+                map.put("meals_id", food_id);
                 map.put("user_id", user_id);
                 return map;
             }
         };
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        jsonObjectRequest.setRetryPolicy(
+        stringRequest.setRetryPolicy(
                 new DefaultRetryPolicy(0,-1,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
+        queue.add(stringRequest);
     }
 
     private void ingridients(String food_id) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Base_url.getingridients(food_id), null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Base_url.getingridients(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
                         try {
-                    JSONArray jsonArray = response.getJSONArray("data");
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonobject=new JSONObject(response);
+                    JSONArray jsonArray = jsonobject.getJSONArray("data");
+                            for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
-
-                            String foodid =object.getString("foodid");
+                            String foodid =object.getString("id");
                             String foodname =object.getString("name");
                             String foodcateg = object.getString("category");
                             String imageurl = object.getString("image");
@@ -236,7 +237,8 @@ public class Food_details  extends Fragment {
                             img_models.add(mg_model);
                             img_adapter.notifyDataSetChanged();
 
-                    }
+
+                            }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -261,53 +263,33 @@ public class Food_details  extends Fragment {
                 }
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String> map=new HashMap<>();
+                map.put("meals_id", food_id);
+                return map;
+            }
+        };
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        jsonObjectRequest.setRetryPolicy(
+        stringRequest.setRetryPolicy(
                 new DefaultRetryPolicy(0,
                         -1,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
-    }
-
-    private void repfrag(@NonNull Fragment fragment) {
-        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.ffframelayout1,fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
-
-    private void showalertdialog() {
-        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
-        builder.setCancelable(false);
-        builder.setTitle("login");
-        builder.setMessage("login to add this food to bookmark");
-        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent=new Intent(getContext(), Login.class);
-                startActivity(intent);
-
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
+        queue.add(stringRequest);
     }
 
     private void cooking_process(String food_id){
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, Base_url.getcookingprocess(food_id), null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        Toast.makeText(getContext(), food_id, Toast.LENGTH_LONG).show();
+
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Base_url.getcookingprocess(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
                         try {
-                    JSONArray jsonArray = response.getJSONArray("data");
-                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonobject=new JSONObject(response);
+                            JSONArray jsonArray = jsonobject.getJSONArray("data");
+                                for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                                     String process =object.getString("process");
                             showBottomSheetDialog(process);
@@ -335,13 +317,53 @@ public class Food_details  extends Fragment {
                 }
                 Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String, String>map=new HashMap<>();
+                map.put("meals_id", food_id);
+                return map;
+            }
+        };
+
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        jsonObjectRequest.setRetryPolicy(
+        stringRequest.setRetryPolicy(
                 new DefaultRetryPolicy(0,
                         -1,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(jsonObjectRequest);
+        queue.add(stringRequest);
+    }
+
+
+    private void showalertdialog() {
+        final AlertDialog.Builder builder= new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
+        builder.setTitle("login");
+        builder.setMessage("login to add this food to bookmark");
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent=new Intent(getContext(), Login.class);
+                startActivity(intent);
+
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
+
+    private void repfrag(@NonNull Fragment fragment) {
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.ffframelayout1,fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 }

@@ -8,13 +8,48 @@
     android:background="@color/white2"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white2"
+            app:titleTextColor="@color/black">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ttttt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:text="Heroic Recipes"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img1"
         android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="65dp"
         android:src="@drawable/head" />
 
     <TextView
@@ -37,7 +72,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="10dp"
         android:hint="email address"
         android:inputType="number"
@@ -52,8 +87,8 @@
             android:id="@+id/useremail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
             android:inputType="textEmailAddress"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,27 +122,27 @@
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/rg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/npm2"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="10dp"
-        android:text="Register here"
-        android:textColor="@color/black" />
-
-
     <Button
         android:id="@+id/buttonlogin"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_below="@+id/npm2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="101dp"
         android:background="@drawable/rounded_corner"
         android:text="login" />
+
+    <TextView
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonlogin"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="40dp"
+        android:text="Register here"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
 
 

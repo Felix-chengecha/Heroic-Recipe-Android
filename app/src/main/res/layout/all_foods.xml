@@ -6,50 +6,48 @@
     android:background="@color/white2"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="270dp"
-        android:id="@+id/search"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="5dp"
-        android:hint="search recipe"
-        android:inputType="text"
-        android:textColorHint="@color/black"
-        app:startIconDrawable="@drawable/ic_baseline_keyboard_24"
-        app:startIconTint="@color/black" >
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Recipe_name"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:textColorHint="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="35dp"
+            android:background="@color/white2"
+            app:titleTextColor="@color/black">
 
 
-    <Button
-        android:id="@+id/search_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="6dp"
-        android:layout_toRightOf="@+id/search"
-        android:backgroundTint="@color/lblue"
-        android:shadowRadius="5"
-        android:text="search"
-        android:textAllCaps="false"
-        android:textSize="9sp"
-        app:icon="@drawable/ic_baseline_search_24" />
+            <TextView
+                android:id="@+id/ttttt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Recipes"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/search_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
+                android:layout_toEndOf="@+id/ttttt"
+                android:src="@drawable/ic_baseline_search_24" />
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <Button
         android:id="@+id/fooods"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search"
+        android:layout_below="@+id/tt"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/lblue"
@@ -63,7 +61,7 @@
         android:id="@+id/fast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search"
+        android:layout_below="@+id/tt"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_toRightOf="@+id/fooods"
@@ -79,7 +77,7 @@
         android:id="@+id/drinks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/search"
+        android:layout_below="@+id/tt"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/fast"
@@ -91,12 +89,11 @@
         app:icon="@drawable/ic_baseline_local_drink_24" />
 
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/FoodSwipe"
-        android:layout_below="@+id/drinks"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/drinks">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/foodview"

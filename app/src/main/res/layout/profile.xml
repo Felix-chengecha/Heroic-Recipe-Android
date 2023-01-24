@@ -6,13 +6,50 @@
     android:background="@color/white2"
     android:layout_height="match_parent">
 
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white2"
+            app:titleTextColor="@color/black">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/ttttt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="20dp"
+                    android:text="Heroic Recipes"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="22sp" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/head"
         android:id="@+id/ttig"
-        android:layout_marginTop="7dp"/>
+        android:layout_width="150dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/head"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/plink"
@@ -20,10 +57,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ttig"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
+        android:layout_marginTop="20dp"
         android:text="login"
-        android:textColor="@color/purple2" />
+        android:textColor="@color/purple2"
+        android:textSize="17sp" />
 
 
     <TextView
@@ -31,11 +68,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/plink"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
         android:text="Name"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="18sp" />
 
 
     <TextView
@@ -43,8 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/plink"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/ntitle"
         android:text="new cook"
         android:textColor="@color/black"
@@ -56,11 +93,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pname"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:text="email"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:text="Email"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="18sp" />
+
+
+    <TextView
+        android:id="@+id/elevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etitle"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="22dp"
+        android:text="Level"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
 
     <TextView
@@ -68,8 +117,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pname"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="28dp"
+        android:layout_toRightOf="@+id/etitle"
+        android:text="new"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/plevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pemail"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="28dp"
         android:layout_toRightOf="@+id/etitle"
         android:text="new"
         android:textColor="@color/black"
@@ -79,12 +141,12 @@
         android:id="@+id/fbck"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="380dp"
-        android:layout_height="85dp"
-        android:layout_below="@+id/pemail"
+        android:layout_height="165dp"
+        android:layout_below="@+id/plevel"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="10dp"
         android:hint="leave feedback"
         android:inputType="number"
@@ -99,8 +161,8 @@
             android:id="@+id/feedback"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black"
             android:inputType="textEmailAddress"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +172,7 @@
         android:layout_height="60dp"
         android:layout_below="@+id/fbck"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="101dp"
         android:background="@drawable/rounded_corner"
         android:text="submit" />

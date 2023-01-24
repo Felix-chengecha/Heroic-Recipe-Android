@@ -3,6 +3,8 @@ package com.example.heroicrecipe;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +12,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +45,10 @@ import java.util.HashMap;
 public class Register extends AppCompatActivity {
 
     EditText EmailRT, PasswordRT, NameRT;
+    RadioGroup RadioGroup;
     Button registerbtn;
-    TextView register;
-
-    public static final String url_alllogin ="https://0a83-105-165-94-243.in.ngrok.io/Recipe/register.php";
+    TextView register,LV;
+    String level=null;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -51,17 +57,19 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        RadioGroup=findViewById(R.id.radiogroup);
         register= findViewById(R.id.lg);
         NameRT = findViewById(R.id.username);
         EmailRT =  findViewById(R.id.useremail);
         PasswordRT = findViewById(R.id.userpassword);
         registerbtn = findViewById(R.id.buttonlogin);
+        LV=findViewById(R.id.lv);
 
-        //various buttons for clicking
+
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verify();
+                checkdetails();
             }
         });
 
@@ -72,63 +80,83 @@ public class Register extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(android.widget.RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.beg:
+                        level="beginner";
+                        break;
+                    case R.id.mid:
+                        level="middle-level";
+                        break;
+                    case R.id.expert:
+                        level="master";
+                        break;
+                }
+            }
+        });
+
     }
 
      //validate username
-     private boolean checkusername(String uname) {
-        if (TextUtils.isEmpty(uname)) {
+     private void checkdetails() {
+         String name = NameRT.getText().toString().trim();
+         String email = EmailRT.getText().toString().trim();
+         String pword = PasswordRT.getText().toString().trim();
+
+         //validate username
+         if (TextUtils.isEmpty(name)) {
             NameRT.setError("please enter you name");
             NameRT.requestFocus();
-            return false;
-        }
-        return true;
-      }
-     //validate email
-     private boolean checkemail(String email) {
-            if (TextUtils.isEmpty(email)) {
-                EmailRT.setError("please enter you email");
-                EmailRT.requestFocus();
-            }
-            else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
-            {
-            EmailRT.setError("please enter a valid email address");
-            EmailRT.requestFocus();
-            return false;
-        }
-        return true;
-    }
-     //validate password
-     private boolean checkpassword(String pword) {
-        if (TextUtils.isEmpty(pword)) {
-            PasswordRT.setError("please enter your password");
-            PasswordRT.requestFocus();
-            return false;
-        }
-        return true;
-    }
+          }
+         //validate email address
+         else if (TextUtils.isEmpty(email)) {
+             EmailRT.setError("please enter you email");
+             EmailRT.requestFocus();
+         }
+         //validate email address
+         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+             EmailRT.setError("please enter a valid email address");
+             EmailRT.requestFocus();
+         }
+         //validate password
+         else if (TextUtils.isEmpty(pword)) {
+             PasswordRT.setError("please enter your password");
+             PasswordRT.requestFocus();
+         }
+         else if(level==null){
+             LV.setError("select your expertise level");
+         }
+         else {
+             String PASS = encryptpassword(pword);
+             verify(name, email, PASS);
+         }
+     }
+
+
 
     //authenticate various users
-    public void verify() {
+    public void verify(String name, String email,String pword) {
         ProgressDialog progressDialog = new ProgressDialog(this);
-        String name = NameRT.getText().toString().trim();
-        String email = EmailRT.getText().toString().trim();
-        String pword = PasswordRT.getText().toString().trim();
-        if (checkemail(email) && checkpassword(pword) && checkusername(name)) {
             progressDialog.show();
             progressDialog.setTitle("Registration");
             progressDialog.setMessage("adding new user");
 
-            JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, Base_url.loginurl(), null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+          StringRequest stringRequest=new StringRequest(Request.Method.POST, Base_url.registerurl(), new Response.Listener<String>() {
+              @Override
+              public void onResponse(String response) {
                             try {
-                                String success = response.getString("MSG");
-                            if (success.equalsIgnoreCase("Data Inserted")) {
+                                JSONObject jsonObject=new JSONObject(response);
+                                Boolean success = jsonObject.getBoolean("success");
+                            if (success) {
                                     EmailRT.setText("");
                                     PasswordRT.setText("");
                                     NameRT.setText("");
-                                    progressDialog.dismiss();
+                                Toast.makeText(Register.this, "welcome sir ", Toast.LENGTH_SHORT).show();
+
+                                progressDialog.dismiss();
                                     Intent Rintent = new Intent(Register.this, Login.class);
                                     startActivity(Rintent);
                                     }
@@ -167,19 +195,36 @@ public class Register extends AppCompatActivity {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("name",name);
                     map.put("email", email);
+                    map.put("level", level);
                     map.put("password", pword);
                     return map;
                 }
             };
 
             RequestQueue queue = Volley.newRequestQueue(this);
-            jsonObjectRequest.setRetryPolicy(
+            stringRequest.setRetryPolicy(
                     new DefaultRetryPolicy(0,-1,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            queue.add(jsonObjectRequest);
+            queue.add(stringRequest);
+    }
 
+
+
+    private String encryptpassword(String password){
+        String generatedPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(password.getBytes());
+            byte[] bytes = md.digest();
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
-
+        return generatedPassword;
     }
 }
 
