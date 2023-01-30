@@ -4,11 +4,23 @@ displays the latest data in real-time,
 
 With a simple and intuitive interface, users can browse, search and save their favorite recipes with ease.
 
+#DEMOS
+1.Home screen
 ![Splash Screen](pic1.jpeg)
+
+2.All Recipes
 ![Recipes](pic2.jpeg)
+
+3.Search page
 ![Search Recipe](pic3.jpeg)
+
+4.Your bookarks
 ![Bookmarks](pic4.jpeg)
+
+5.Recipe more details
 ![More details](pic5.jpeg)
+
+6.Cooking process
 ![Cooking process](pic6.jpeg)
 
 ## Features
