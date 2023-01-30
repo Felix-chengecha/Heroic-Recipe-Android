@@ -6,23 +6,23 @@ displays the latest data in real-time,
 
 #Screens
 
-Home screen
-![Splash Screen](pic1.jpg)
+##Home screen
+![Splash Screen](screenshot/pic1.jpg)
 
-All Recipes
-![Recipes](pic2.jpg)
+##All Recipes
+![Recipes](screenshot/pic2.jpg)
 
-Search page
-![Search Recipe](pic3.jpg)
+##Search page
+![/Search Recipe](screenshot/pic3.jpg)
 
-Added bookmarks
-![Bookmarks](pic4.jpg)
+##Added bookmarks
+![Bookmarks](screenshot/pic4.jpg)
 
-food more details
-![More details](pic5.jpg)
+##food more details
+![More details](screenshot/pic5.jpg)
 
-Cooking process
-![Cooking process](pic6.jpg)
+##Cooking process
+![Cooking process](screenshot/pic6.jpg)
 
 ## Features
 - Browse and search for recipes by category, ingredient or keyword
