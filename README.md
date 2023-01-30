@@ -6,23 +6,23 @@ displays the latest data in real-time,
 
 #Screens
 
-1.Home screen
-![Splash Screen](pic1.jpeg)
+Home screen
+![Splash Screen](pic1.jpg)
 
-2.All Recipes
-![Recipes](pic2.jpeg)
+All Recipes
+![Recipes](pic2.jpg)
 
-3.Search page
-![Search Recipe](pic3.jpeg)
+Search page
+![Search Recipe](pic3.jpg)
 
-4.Added bookmarks
-![Bookmarks](pic4.jpeg)
+Added bookmarks
+![Bookmarks](pic4.jpg)
 
-5.Recipe more details
-![More details](pic5.jpeg)
+food more details
+![More details](pic5.jpg)
 
-6.Cooking process
-![Cooking process](pic6.jpeg)
+Cooking process
+![Cooking process](pic6.jpg)
 
 ## Features
 - Browse and search for recipes by category, ingredient or keyword
@@ -38,10 +38,9 @@ displays the latest data in real-time,
 4. Start cooking and enjoy delicious meals!
 
 ## Contributing
+The app was built using Java and Android Studio, with Volley handling the data retrieval and Laravel powering the backend database.
 If you would like to contribute to the development of the Recipe App, please reach out to us. We would love to hear from you!
 This README file provides a brief overview of the features and functionality of the recipe app, as well as instructions on how to get started using it. The images help give a visual representation of what the app looks like and what it can do.
 
-#summary
-The app was built using Java and Android Studio, with Volley handling the data retrieval and Laravel powering the backend database.
 
 
