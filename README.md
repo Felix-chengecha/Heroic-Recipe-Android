@@ -4,7 +4,7 @@ This Android app utilizes Volley to fetch data from a database powered by Larave
 displays the latest data in real-time, 
 -With a simple and intuitive interface, users can browse, search and save their favorite recipes with ease.
 
-# App Screens
+## App Screens
 
 <table>
   <tr>
