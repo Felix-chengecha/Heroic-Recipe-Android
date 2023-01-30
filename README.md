@@ -27,9 +27,9 @@ displays the latest data in real-time,
      <td>Cooking process</td>
   </tr>
   <tr>
-    <td><img src="screenshot/pic1.jpg" width=270 height=480></td>
-    <td><img src="screenshot/pic2.jpg" width=270 height=480></td>
-    <td><img src="screenshot/pic3.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic4.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic5.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic6.jpg" width=270 height=480></td>
   </tr>
  </table>
 
