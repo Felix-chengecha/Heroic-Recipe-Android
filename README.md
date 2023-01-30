@@ -1,10 +1,11 @@
 # Recipe App for Android
+
 This Android app utilizes Volley to fetch data from a database powered by Laravel. The app seamlessly retrieves and 
 displays the latest data in real-time, 
+-With a simple and intuitive interface, users can browse, search and save their favorite recipes with ease.
 
-With a simple and intuitive interface, users can browse, search and save their favorite recipes with ease.
+#Screens
 
-#DEMOS
 1.Home screen
 ![Splash Screen](pic1.jpeg)
 
@@ -14,7 +15,7 @@ With a simple and intuitive interface, users can browse, search and save their f
 3.Search page
 ![Search Recipe](pic3.jpeg)
 
-4.Your bookarks
+4.Added bookmarks
 ![Bookmarks](pic4.jpeg)
 
 5.Recipe more details
