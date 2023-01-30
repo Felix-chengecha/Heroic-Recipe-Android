@@ -4,25 +4,22 @@ This Android app utilizes Volley to fetch data from a database powered by Larave
 displays the latest data in real-time, 
 -With a simple and intuitive interface, users can browse, search and save their favorite recipes with ease.
 
-#Screens
+#App Screens
 
-##Home screen
-![Splash Screen](screenshot/pic1.jpg)
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple and selected day in pink</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/pic1.jpg" width=270 height=480></td>
+    <td><img src="screenshots/pic2.jpg" width=270 height=480></td>
+    <td><img src="screenshots/pic3.jpg" width=270 height=480></td>
+  </tr>
+ </table>
 
-##All Recipes
-![Recipes](screenshot/pic2.jpg)
-
-##Search page
-![/Search Recipe](screenshot/pic3.jpg)
-
-##Added bookmarks
-![Bookmarks](screenshot/pic4.jpg)
-
-##food more details
-![More details](screenshot/pic5.jpg)
-
-##Cooking process
-![Cooking process](screenshot/pic6.jpg)
+#
 
 ## Features
 - Browse and search for recipes by category, ingredient or keyword
