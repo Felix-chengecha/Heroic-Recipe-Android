@@ -1,11 +1,16 @@
 package com.example.heroicrecipe;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +24,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class Host extends AppCompatActivity {
 
+//    Toolbar toolbar;
     BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,34 @@ public class Host extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemidd = item.getItemId();
+        if (itemidd == R.id.Talk) {
+            Toast.makeText(this, "talk to us", Toast.LENGTH_LONG).show();
+            return true;
+        } else if (itemidd == R.id.profile) {
+            replacefrag(new Profile());
+
+        } else if (itemidd == R.id.signout) {
+            SharedPreferences sharedPreferences = getSharedPreferences("user_info", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove("token");
+            editor.remove("user_id");
+            editor.clear();
+            editor.commit();
+            Toast.makeText(this, "successfully logged out", Toast.LENGTH_LONG).show();
+
+        }
+        return true;
     }
 
     private void replacefrag(@NonNull Fragment fragment) {

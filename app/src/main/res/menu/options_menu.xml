@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Talk"
+        android:icon="@drawable/ic_baseline_message_24"
+        android:background="@color/white2"
+        android:title="talk to us"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_perm_identity_24"
+        android:background="@color/white2"
+        android:title="profile"
+        android:enabled="true"/>
+
+    <item
+        android:id="@+id/signout"
+        android:icon="@drawable/ic_baseline_power_settings_new_24"
+        android:background="@color/white2"
+        android:title="signout"
+        android:enabled="true"/>
+
+
+
+
+</menu>

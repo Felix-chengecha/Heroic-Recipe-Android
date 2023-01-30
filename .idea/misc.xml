@@ -9,7 +9,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.17135416666666667" />
-        <entry key="app/src/main/res/layout/all_foods.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/all_foods.xml" value="0.33" />
         <entry key="app/src/main/res/layout/bookmarks.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/food_details.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/food_image_items.xml" value="0.1703125" />
@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/layout/process.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/profile.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/layout/search_food.xml" value="0.1703125" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.1703125" />
         <entry key="app/src/main/res/menu/types_items.xml" value="0.17135416666666667" />
       </map>
     </option>

@@ -83,7 +83,7 @@ public class Login extends AppCompatActivity {
     }
 
 
-    //validate username
+    //validate details
     private void checkdetails() {
        String email = EmailET.getText().toString().trim();
         String pword = PasswordET.getText().toString().trim();

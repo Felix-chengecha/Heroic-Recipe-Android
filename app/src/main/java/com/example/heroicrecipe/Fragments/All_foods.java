@@ -1,24 +1,17 @@
 package com.example.heroicrecipe.Fragments;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,14 +29,12 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.heroicrecipe.Adapters.Foods_Adapter;
 import com.example.heroicrecipe.Models.food_model;
 import com.example.heroicrecipe.R;
 import com.example.heroicrecipe.Utils.Base_url;
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,11 +53,15 @@ public class All_foods extends Fragment implements View.OnClickListener {
     SwipeRefreshLayout foodswipe;
     ImageView srch;
 
-
+    Toolbar toolbar;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.all_foods, container, false);
+
+        toolbar=view.findViewById(R.id.toolbarr);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);;
 
         srch=view.findViewById(R.id.search_link);
         Fooods = view.findViewById(R.id.fooods);

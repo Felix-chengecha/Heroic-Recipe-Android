@@ -2,7 +2,7 @@ package com.example.heroicrecipe.Utils;
 
 public class Base_url {
 
-    private static String mainUrl = "https://c6bc-105-160-59-65.eu.ngrok.io/";
+    private static String mainUrl = "https://1156-105-61-238-65.in.ngrok.io/";
 
     public static String getallfoods(){
         return mainUrl + "api/Recipe/allrecipes";
