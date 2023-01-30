@@ -8,14 +8,28 @@ displays the latest data in real-time,
 
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
-     <td>Present day in purple and selected day in pink</td>
+    <td>Welcome Screen</td>
+     <td>Recipes</td>
+     <td>Search Recipe</td>
   </tr>
   <tr>
-    <td><img src="screenshots/pic1.jpg" width=270 height=480></td>
-    <td><img src="screenshots/pic2.jpg" width=270 height=480></td>
-    <td><img src="screenshots/pic3.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic1.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic2.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic3.jpg" width=270 height=480></td>
+  </tr>
+ </table>
+
+<table>
+
+  <tr>
+    <td>Bookmarks </td>
+     <td>More detils</td>
+     <td>Cooking process</td>
+  </tr>
+  <tr>
+    <td><img src="screenshot/pic1.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic2.jpg" width=270 height=480></td>
+    <td><img src="screenshot/pic3.jpg" width=270 height=480></td>
   </tr>
  </table>
 
