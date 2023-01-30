@@ -23,7 +23,7 @@ displays the latest data in real-time,
 
   <tr>
     <td>Bookmarks </td>
-     <td>More detils</td>
+     <td>More details</td>
      <td>Cooking process</td>
   </tr>
   <tr>
